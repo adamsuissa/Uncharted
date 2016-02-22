@@ -17,12 +17,19 @@
 import os
 import webapp2
 import jinja2
+from google.appengine.ext import ndb
 import soundcloud
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
+
+class SongModel(ndb.Models):
+    title = ndb.StringProperty()
+    songwriter = ndb.StringProperty()
+    user_image = ndb.StringProperty()
+
 
 
 class SoundcloudUsersHandler(webapp2.RequestHandler):
@@ -31,6 +38,7 @@ class SoundcloudUsersHandler(webapp2.RequestHandler):
         tracks = client.get('/tracks')
         for t in tracks:
             info = t.obj
+            print info
             template = JINJA_ENVIRONMENT.get_template('pages/player.html')
             self.response.write(template.render({"user_info": info}))
 
