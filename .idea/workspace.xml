@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cad14edd-7ae1-4e10-a7a2-ebbf04394b28" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uncharted.iml" afterPath="$PROJECT_DIR$/.idea/uncharted.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
     </list>
@@ -31,8 +32,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4768977">
-              <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.30858085">
+              <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
               <folding>
                 <element signature="e#601#610#0" expanded="true" />
               </folding>
@@ -94,8 +95,8 @@
         <option value="$PROJECT_DIR$/css/base.css" />
         <option value="$PROJECT_DIR$/css/player.css" />
         <option value="$PROJECT_DIR$/pages/base.html" />
-        <option value="$PROJECT_DIR$/pages/player.html" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/pages/player.html" />
       </list>
     </option>
   </component>
@@ -188,7 +189,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.appengine.AppEngineModulesConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ronicopic" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -425,7 +426,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456137676485</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="continue working putting soundcloud user information on templates">
+      <created>1456140165975</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1456140165975</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -458,7 +465,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="started working putting soundcloud user information on templates" />
-    <option name="LAST_COMMIT_MESSAGE" value="started working putting soundcloud user information on templates" />
+    <MESSAGE value="continue working putting soundcloud user information on templates" />
+    <option name="LAST_COMMIT_MESSAGE" value="continue working putting soundcloud user information on templates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -517,8 +525,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4768977">
-          <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.30858085">
+          <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
           <folding>
             <element signature="e#601#610#0" expanded="true" />
           </folding>

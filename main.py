@@ -20,16 +20,20 @@ import jinja2
 from google.appengine.ext import ndb
 import soundcloud
 
+
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class SongModel(ndb.Models):
-    title = ndb.StringProperty()
-    songwriter = ndb.StringProperty()
-    user_image = ndb.StringProperty()
 
+class SongModel(ndb.Model):
+    song_title = ndb.StringProperty()
+    username = ndb.StringProperty()
+    user_image = ndb.StringProperty()
+    song_image = ndb.StringProperty()
+    song_url = ndb.StringProperty()
+    likes = ndb.IntegerProperty()
 
 
 class SoundcloudUsersHandler(webapp2.RequestHandler):
