@@ -1,5 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'pages/base.html' %}
 
 {% block info %}
-    {{ user_info }}
+    {% for t in tracks %}
+{{ t.song_url  }}
+    {% endfor %}
 {% endblock %}

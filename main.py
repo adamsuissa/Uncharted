@@ -18,7 +18,7 @@ import os
 import webapp2
 import jinja2
 from google.appengine.ext import ndb
-import soundcloud
+
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -27,28 +27,75 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 
-class SongModel(ndb.Model):
+class Song(ndb.Model):
+    id = ndb.IntegerProperty()
     song_title = ndb.StringProperty()
-    username = ndb.StringProperty()
+    song_id = ndb.IntegerProperty()
+    user_name = ndb.StringProperty()
+    user_id = ndb.IntegerProperty()
     user_image = ndb.StringProperty()
     song_image = ndb.StringProperty()
     song_url = ndb.StringProperty()
     likes = ndb.IntegerProperty()
 
 
+
+    # # def post(self):
+    #     song_title = self.request.get('song-title')
+    #     song_id = self.request.get('song-id')
+    #     user_name = self.request.get('user-name')
+    #     user_id = self.request.get('user-id')
+    #     user_image = self.request.get('user-name')
+    #     song_image = self.request.get('song-image')
+    #     song_url = self.request.get('song-url')
+    #
+    #     new_song = Song()
+    #     new_song.populate(song_title=song_title, song_id=song_id, user_name=user_name, user_id=user_id, user_image=user_image, song_image=song_image, song_url=song_url)
+    #     new_song.put()
+
+
+class SaveSong(webapp2.RequestHandler):
+
+    def post(self):
+        song_title = self.request.get('song-title')
+        song_id = self.request.get('song-id')
+        user_name = self.request.get('user-name')
+        user_id = self.request.get('user-id')
+        user_image = self.request.get('user-image')
+        song_image = self.request.get('song-image')
+        song_url = self.request.get('song-url')
+
+        new_song = Song()
+        new_song.populate(song_title=song_title, song_id=song_id, user_name=user_name, user_id=user_id,
+                          user_image=user_image, song_image=song_image, song_url=song_url)
+        new_song.put()
+
+    # new_song = Song()
+    # new_song.populate(song_title='a song', song_id=12345, user_name='Max Prais', user_id=76442, song_url='https://api.soundcloud.com/tracks/248316104/stream')
+    # new_song.put()
+
+
 class SoundcloudUsersHandler(webapp2.RequestHandler):
     def get(self):
-        client = soundcloud.Client(client_id='27bcac07db1cde6ee2ff5f3ad8d79969')
-        tracks = client.get('/tracks')
-        for t in tracks:
-            info = t.obj
-            print info
-            template = JINJA_ENVIRONMENT.get_template('pages/player.html')
-            self.response.write(template.render({"user_info": info}))
 
+        song_query = ndb.gql("SELECT * FROM Song").fetch(100)
+
+        template = JINJA_ENVIRONMENT.get_template('pages/player.html')
+        self.response.write(template.render({"tracks": song_query}))
+
+
+class UpdateSongLikes(webapp2.RequestHandler):
+    def post(self):
+        song_id = self.request.get('song-id')
+
+        find_song_qry = Song.query(Song.id == song_id)
+        song = Song()
 
 
 app = webapp2.WSGIApplication([
-    ('/', SoundcloudUsersHandler)
+    ('/song', SoundcloudUsersHandler),
+    ('/savesong', SaveSong),
+
+
 ], debug=True)
 
