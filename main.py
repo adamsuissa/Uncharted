@@ -25,18 +25,18 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 
-class MainHandler(webapp2.RequestHandler):
+class SoundcloudUsersHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
-
-    def get_user(self):
         client = soundcloud.Client(client_id='27bcac07db1cde6ee2ff5f3ad8d79969')
         tracks = client.get('/tracks')
         for t in tracks:
-            print t.obj
+            info = t.obj
+            template = JINJA_ENVIRONMENT.get_template('pages/player.html')
+            self.response.write(template.render({"user_info": info}))
+
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', SoundcloudUsersHandler)
 ], debug=True)
 
