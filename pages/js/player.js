@@ -1,35 +1,32 @@
 /**
  * Created by User on 2/22/2016.
  */
-SC.initialize({
-  client_id: '27bcac07db1cde6ee2ff5f3ad8d79969'
-});
 
-var track_url = 'http://soundcloud.com/forss/flickermood';
-SC.oEmbed(track_url, { auto_play: true }).then(function(oEmbed) {
+player = {};
 
-  console.log('oEmbed response: ', oEmbed);
-});
-
-
-(function(){
-    var widgetIframe = document.getElementById('sc-widget'),
-        widget       = SC.Widget(widgetIframe);
-
-    widget.bind(SC.Widget.Events.READY, function() {
-      widget.bind(SC.Widget.Events.PLAY, function() {
-        // get information about currently playing sound
-        widget.getCurrentSound(function(currentSound) {
-          console.log('sound ' + currentSound.get('') + 'began to play');
-        });
-      });
-      // get current level of volume
-      widget.getVolume(function(volume) {
-        console.log('current volume value is ' + volume);
-      });
-      // set new volume level
-      widget.setVolume(50);
-      // get the value of the current position
+player.init = function () {
+    SC.initialize({
+        client_id: '27bcac07db1cde6ee2ff5f3ad8d79969'
     });
+    console.log('jquery init');
+    $('.play-btn').on('click', player.playSong);
+    $('.next-btn').on('click', player.nextSong);
+};
+player.songid = '47506738';
 
-  }());
+player.playSong = function playIt(){
+    console.log('playit');
+    SC.get("/tracks/" + player.songid).then(function(sound){
+        url = sound.stream_url + "?client_id=27bcac07db1cde6ee2ff5f3ad8d79969";
+
+        $("#audio-test").attr("src", url);
+        $("#audio-test")[0].play()
+    });
+};
+
+player.nextSong = function nextSong() {
+    player.songid = '47506738';
+    player.playIt();
+};
+
+$(player.init);

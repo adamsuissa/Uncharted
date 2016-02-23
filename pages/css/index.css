@@ -1,0 +1,65 @@
+.player-cont{
+    /*background-color: #38149A;*/
+    background-image: url("../images/teardropback.jpg");
+    background-size: contain;
+
+    height: 100%;
+    width: 48%;
+    display: inline-block;
+}
+@media screen and (max-width: 487px){
+    .player-cont{
+        width: 100%;
+    }
+    .media-button-cont{
+        margin-top: 60%;
+    }
+}@media screen and (min-width: 489px){
+    .player-cont{
+        width: 100%;
+    }
+    .media-button-cont{
+        margin-top: 60%;
+    }
+}
+@media screen and (min-width: 500px){
+    .player-cont{
+        width: 100%;
+        background-size: contain;
+    }
+    .media-button-cont{
+        margin-top: 55%;
+    }
+}
+
+.wrapper{
+    text-align: center;
+}
+.logo{
+    height: 100px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+body{
+    /*background-color: #DDD8EB;*/
+    background-color: #787481;
+}
+
+
+.play-btn{
+    height: 100px;
+    width: 100px;
+}
+.heart{
+    height: 100px;
+    width: 100px;
+    border: red;
+}
+.redheart{
+    height: 100px;
+    width: 100px;
+}
+.clickable{
+    cursor: pointer;
+}
