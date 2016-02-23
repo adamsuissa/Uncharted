@@ -1,18 +1,26 @@
 .player-cont{
     /*background-color: #38149A;*/
-    background-image: url("../images/teardropback.jpg");
+    background-image: url("../images/supertrippy.jpg");
     background-size: contain;
 
     height: 100%;
     width: 48%;
     display: inline-block;
 }
+
+.sidebar{
+        background-image: url('../images/sidebar.jpg');
+    }
+.sidebar1{
+        background-image: url('../images/sidebar.jpg');
+    }
+
 @media screen and (max-width: 487px){
     .player-cont{
         width: 100%;
     }
     .media-button-cont{
-        margin-top: 60%;
+        margin-top: 35%;
     }
 }@media screen and (min-width: 489px){
     .player-cont{
@@ -23,28 +31,129 @@
 
     }
 }
-@media screen and (min-width: 500px){
-    .player-cont{
+
+@media screen and (min-width: 500px) {
+    .player-cont {
         width: 100%;
         background-size: contain;
     }
-    .media-button-cont{
-        margin-top: 55%;
+
+    .media-button-cont {
+        margin-top: 35%;
     }
     .sidebar{
         display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+
+}
+
+@media screen and (min-width: 542px){
+    .player-cont{
+        width: 80%;
+        background-size: contain;
+    }
+    .logo{
+        width: 70%;
+    }
+    .media-button-cont{
+        margin-top: 35%;
+    }
+     .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
     }
 }
+
+
+@media screen and (min-width: 637px){
+
+    .logo{
+        width: 70%;
+    }
+}
+
+
+@media screen and (min-width: 674px){
+    .player-cont{
+        width: 80%;
+        background-size: contain;
+    }
+    .logo{
+        width: 63%;
+    }
+    .media-button-cont{
+        margin-top: 38%;
+    }
+     .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 759px){
+    .player-cont{
+        width: 80%;
+        /*background-size: contain;*/
+        /*!*background-image: url("../images/trippy.jpg");*!*/
+    }
+    .logo{
+        width: 63%;
+    }
+    .media-button-cont{
+        margin-top: 38%;
+    }
+     .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 957px){
+    .player-cont{
+        width: 80%;
+        background-size: contain;
+    }
+    .media-button-cont{
+        margin-top: 38%;
+    }
+     .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 1067px){
+    .player-cont{
+        width: 80%;
+        background-size: contain;
+    }
+    .media-button-cont{
+        margin-top: 38%;
+    }
+    .sidebar{
+        display: inline-block;
+    }.sidebar1{
+        display: inline-block;
+    }
+}
+
 
 .wrapper{
     text-align: center;
 }
 .logo{
     height: 100px;
-    width: 500px;
     margin-left: auto;
     margin-right: auto;
 }
+
+
 body{
     /*background-color: #DDD8EB;*/
     background-color: #787481;
@@ -52,18 +161,30 @@ body{
 
 
 .play-btn{
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
 }
 .heart{
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
     border: red;
 }
 .redheart{
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
 }
 .clickable{
     cursor: pointer;
+}
+.skip-btn{
+    height: 120px;
+    width: 120px;
+}
+.pause-btn{
+    height: 120px;
+    width: 120px;
+}
+.artwork{
+    height: 120px;
+    width: 120px;
 }

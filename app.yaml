@@ -18,10 +18,6 @@ handlers:
 
 - url: /images
   static_dir: images
-#  mime_type: image/png
-
-- url: .*
-  script: main.app
   mime_type: image/png
 
 - url: .*
