@@ -23,9 +23,10 @@
     });
 
     function andThen() {
-        allTracks = [];
+        var allTracks = [];
         tracks.forEach(function (val, ind) {
             newTrack = {};
+            newTrack['id'] = ind;
             newTrack['song-title'] = val.title;
             newTrack['song-id'] = val.id;
             newTrack['user-name'] = val.user.username;

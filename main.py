@@ -17,7 +17,9 @@
 import os
 import webapp2
 import jinja2
+import random
 from google.appengine.ext import ndb
+import json
 
 
 
@@ -64,10 +66,10 @@ class SaveSong(webapp2.RequestHandler):
         user_image = self.request.get('user-image')
         song_image = self.request.get('song-image')
         song_url = self.request.get('song-url')
-
+        id = self.request.get('id')
         new_song = Song()
-        new_song.populate(song_title=song_title, song_id=song_id, user_name=user_name, user_id=user_id,
-                          user_image=user_image, song_image=song_image, song_url=song_url)
+        new_song.populate(id=id, song_title=song_title, song_id=int(song_id), user_name=user_name, user_id=int(user_id),
+                          user_image=user_image, song_image=song_image, song_url=song_url, likes=0)
         new_song.put()
 
     # new_song = Song()
@@ -75,13 +77,10 @@ class SaveSong(webapp2.RequestHandler):
     # new_song.put()
 
 
-class SoundcloudUsersHandler(webapp2.RequestHandler):
+class Index(webapp2.RequestHandler):
     def get(self):
-
-        song_query = ndb.gql("SELECT * FROM Song").fetch(100)
-
         template = JINJA_ENVIRONMENT.get_template('pages/player.html')
-        self.response.write(template.render({"tracks": song_query}))
+        self.response.write(template.render({"tracks": {}}))
 
 
 class UpdateSongLikes(webapp2.RequestHandler):
@@ -92,10 +91,29 @@ class UpdateSongLikes(webapp2.RequestHandler):
         song = Song()
 
 
+class GetSong(webapp2.RequestHandler):
+    def get(self):
+        size = 200 # todo: make dynamic query
+        song_choice = random.randint(0, size)
+
+        song_query = ndb.gql("SELECT song_id FROM Song where id=%s" % song_choice).fetch(1)
+
+        self.response.headers['Content-Type'] = 'application/json'
+        obj = { 'song-id': song_query }
+        self.response.out.write(json.dumps(obj))
+
+
+
+class WorkArondHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('pages/workaround.html')
+        self.response.write(template.render())
+
+
 app = webapp2.WSGIApplication([
-    ('/song', SoundcloudUsersHandler),
+    ('/', Index),
+    ('/song', GetSong),
     ('/savesong', SaveSong),
-
-
+    #('/populateDB', WorkArondHandler)
 ], debug=True)
 
