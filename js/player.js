@@ -11,12 +11,17 @@ player.init = function () {
         client_id: '27bcac07db1cde6ee2ff5f3ad8d79969'
     });
     console.log('jquery init');
-    $('.play-btn').on('click', player.playSong);
-    $('.next-btn').on('click', player.nextSong);
+    $('.play-btn').on('click', function () {
+        $("#audio-test")[0].play();
+    });
+    $('.next-btn').on('click', player.playSong);
     $('.redheart').on('click', client.likeSong);
+    $('.pause-btn').on('click', function () {
+        $("#audio-test")[0].pause();
+    });
 };
 
-player.playSong = function playIt(){
+player.playSong = function () {
     console.log('playit');
     client.getSong(function (sobj) {
         player.songid = sobj.song_id;
@@ -29,11 +34,6 @@ player.playSong = function playIt(){
             $("#audio-test")[0].play();
         });
     });
-};
-
-player.nextSong = function nextSong() {
-    player.songid = '47506738';
-    player.playIt();
 };
 
 $(player.init);
