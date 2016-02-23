@@ -10,6 +10,11 @@ player.init = function () {
     SC.initialize({
         client_id: '27bcac07db1cde6ee2ff5f3ad8d79969'
     });
+
+    $('.play-btn').on('click', function () {
+        $("#audio-test")[0].play();
+    });
+    $('.skip-btn').on('click', player.playSong);
     console.log('jquery init');
     $('.play-btn-hover').on('click', player.playSong);
     $('.skip-btn-hover').on('click', player.nextSong);
@@ -29,7 +34,11 @@ player.playSong = function () {
         player.songid = sobj.song_id;
         console.log(sobj.song_id);
         player.song = sobj;
-        SC.get("/tracks/" + player.songid).then(function(sound){
+        simage = sobj.song_image || sobj.user_image || '';
+        $('.artwork').attr('src', simage);
+        SC.get("/tracks/" + player.songid).then(function(sound) {
+            $('.title').text(sobj.song_title);
+            $('.artist').text(sobj.user_name);
             console.log(sound.stream_url);
             var url = sound.stream_url + "?client_id=27bcac07db1cde6ee2ff5f3ad8d79969";
             $("#audio-test").attr("src", url);

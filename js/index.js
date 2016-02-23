@@ -9,12 +9,10 @@ $(function(){
 });
 
 $(function(){
-
     $('.redheart').on('mouseout', function () {
         $('.redheart').addClass('hidden');
         $('.heart').removeClass('hidden');
     })
-
 });
 //959494
 //
@@ -72,6 +70,7 @@ $(function(){
 });
 
 /////////////////////////////
+
 
 toggle_color("#61beb3", "#90a2c6", 4000, 2000);
 
