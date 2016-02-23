@@ -1,3 +1,10 @@
- /**
- * Created by User on 2/22/2016.
- */
+
+var client = client || {};
+
+client.getSong = function () {
+    var song = '';
+    $.get('/song', function (data) {
+        song = data['song-id'];
+    });
+    return song;
+};
