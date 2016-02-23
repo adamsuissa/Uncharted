@@ -2,9 +2,9 @@
 var client = client || {};
 
 client.getSong = function (success) {
-    var song = {};
     $.get('/song', function (data) {
-        song['song-id'] = data['song-id'];
+        var song = {};
+        song.song_id = data.song_id;
         song.id = data.id;
         song.song_title = data.song_title;
         song.user_name = data.user_name;
@@ -13,8 +13,8 @@ client.getSong = function (success) {
         song.song_image = data.song_image;
         song.song_url = data.song_url;
         song.likes = data.likes;
+        success(song);
     });
-    success(song);
 };
 
 client.likeSong = function() {

@@ -102,7 +102,7 @@ class GetSong(webapp2.RequestHandler):
         qry = Song.query(Song.id == random_id).fetch(1)[0]
 
         self.response.headers['Content-Type'] = 'application/json'
-        obj = { 'song-id': qry.song_id,
+        obj = { 'song_id': qry.song_id,
                 'id': qry.id,
                 'song_title': qry.song_title,
                 'user_name': qry.user_name,
