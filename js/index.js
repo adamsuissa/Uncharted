@@ -10,44 +10,46 @@ $(function(){
 
 $(function(){
     $('.redheart').on('mouseout', function () {
-        $('.redheart').addClass('hidden');
-        $('.heart').removeClass('hidden');
-    })
+        if (!player.song.liked) {
+            $('.redheart').addClass('hidden');
+            $('.heart').removeClass('hidden');
+        }
+    });
 });
 //959494
 //
 $(function(){
    $('.play-btn-hover').on('click', function(){
-       $('.play-btn-hover').addClass('hidden');
-       $('.pause-btn').removeClass('hidden');
-   })
+       //if (!player.playing) {
+           $('.play-btn-hover').addClass('hidden');
+           $('.pause-btn').removeClass('hidden');
+       //}
+   });
 });
 
 //Pause
 $(function(){
    $('.pause-btn').on('click', function(){
        $('.pause-btn').addClass('hidden');
-   })
+       $('.play-btn').removeClass('hidden');
+   });
 });
 
-function keepRed(){
-    $('.redheart').on('click', function(){
-        $('.redheart').show()
-    })
-}
 
 //Play btn hover
 $(function(){
    $('.play-btn').on('mouseover', function(){
        $('.play-btn').addClass('hidden');
        $('.play-btn-hover').removeClass('hidden');
-   })
+   });
 });
 
 $(function(){
     $('.play-btn-hover').on('mouseout', function () {
-        $('.play-btn-hover').addClass('hidden');
-        $('.play-btn').removeClass('hidden');
+        if (player.playing) {
+            $('.play-btn-hover').addClass('hidden');
+            $('.play-btn').removeClass('hidden');
+        }
     })
 
 });
@@ -69,19 +71,39 @@ $(function(){
 
 });
 
+    function togglePlay(on) {
+    if (on && !player.playing) {
+        $('.play-btn').addClass('hidden');
+        $('.play-btn-hover').addClass('hidden');
+        return true;
+    }
+    if (!on && player.playing) {
+
+        return true;
+    }
+    return false;
+}
+
 /////////////////////////////
 
 
-toggle_color("#61beb3", "#90a2c6", 4000, 2000);
-
-function toggle_color(color1, color2, cycle_time, wait_time) {
-
-    setInterval(function first_color() {
-        document.body.style.backgroundColor = color1;
-        setTimeout(change_color, wait_time);
-    }, cycle_time);
-
-    function change_color() {
-        document.body.style.backgroundColor = color2;
+$(document).ready(function(){
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
-}
+
+    function change_random_bgcolor(change_time) {
+        setInterval(function change_color() {
+
+            $("body").css({
+                "background-color": getRandomColor()
+            });
+        }, change_time);
+    }
+    change_random_bgcolor(3000);
+});

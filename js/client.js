@@ -20,8 +20,10 @@ client.getSong = function (success) {
 };
 
 client.likeSong = function() {
-    if (!client.liked) {
+    if (!player.song.liked) {
         $.post("/likesong", {'song-id': player.songid});
-        client.liked = true;
+        player.song.liked = true;
+        $('.redheart').addClass('hidden');
+        $('.heart').removeClass('hidden');
     }
 };
