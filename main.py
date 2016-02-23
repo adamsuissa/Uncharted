@@ -22,7 +22,6 @@ from google.appengine.ext import ndb
 import json
 
 
-
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
@@ -68,13 +67,9 @@ class SaveSong(webapp2.RequestHandler):
         song_url = self.request.get('song-url')
         id = self.request.get('id')
         new_song = Song()
-        new_song.populate(id=id, song_title=song_title, song_id=int(song_id), user_name=user_name, user_id=int(user_id),
+        new_song.populate(id=int(id), song_title=song_title, song_id=int(song_id), user_name=user_name, user_id=int(user_id),
                           user_image=user_image, song_image=song_image, song_url=song_url, likes=0)
         new_song.put()
-
-    # new_song = Song()
-    # new_song.populate(song_title='a song', song_id=12345, user_name='Max Prais', user_id=76442, song_url='https://api.soundcloud.com/tracks/248316104/stream')
-    # new_song.put()
 
 
 class Index(webapp2.RequestHandler):
@@ -87,24 +82,25 @@ class UpdateSongLikes(webapp2.RequestHandler):
     def post(self):
         song_id = self.request.get('song-id')
 
-        find_song_qry = Song.query(Song.id == song_id)
-        song = Song()
+        find_song_qry = Song.query(Song.song_id == song_id)
 
 
 class GetSong(webapp2.RequestHandler):
     def get(self):
         size = 200 # todo: make dynamic query
-        song_choice = random.randint(0, size)
+        random_id = random.randint(0, size-1)
 
-        song_query = ndb.gql("SELECT song_id FROM Song where id=%s" % song_choice).fetch(1)
+        # song_query = ndb.gql("SELECT song_id FROM Song where id=%s" % song_choice).fetch(1)
+        # song_query = ndb.gql("SELECT song_id FROM Song LIMIT 1").fetch(1)
+
+        qry = Song.query(Song.id == random_id).fetch(1)[0].song_id
 
         self.response.headers['Content-Type'] = 'application/json'
-        obj = { 'song-id': song_query }
+        obj = { 'song-id': qry }
         self.response.out.write(json.dumps(obj))
 
 
-
-class WorkArondHandler(webapp2.RequestHandler):
+class WorkAroundHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('pages/workaround.html')
         self.response.write(template.render())
@@ -114,6 +110,6 @@ app = webapp2.WSGIApplication([
     ('/', Index),
     ('/song', GetSong),
     ('/savesong', SaveSong),
-    #('/populateDB', WorkArondHandler)
+    ('/populateDB', WorkAroundHandler)
 ], debug=True)
 

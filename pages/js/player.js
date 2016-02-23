@@ -1,18 +1,10 @@
 /**
  * Created by User on 2/22/2016.
  */
-SC.initialize({
-  client_id: '27bcac07db1cde6ee2ff5f3ad8d79969'
-});
 
-var track_url = 'http://soundcloud.com/forss/flickermood';
-SC.oEmbed(track_url, { auto_play: true }).then(function(oEmbed) {
+player = {};
 
-  console.log('oEmbed response: ', oEmbed);
-});
-
-
-(function(){
+player.initWidget = function() {
     var widgetIframe = document.getElementById('sc-widget'),
         widget       = SC.Widget(widgetIframe);
 
@@ -31,5 +23,20 @@ SC.oEmbed(track_url, { auto_play: true }).then(function(oEmbed) {
       widget.setVolume(50);
       // get the value of the current position
     });
+};
 
-  }());
+
+player.init = function () {
+    SC.initialize({
+        client_id: '27bcac07db1cde6ee2ff5f3ad8d79969'
+    });
+
+    player.initWidget();
+
+    var track_url = 'http://soundcloud.com/forss/flickermood';
+    SC.oEmbed(track_url, {auto_play: true}).then(function (oEmbed) {
+        console.log('oEmbed response: ', oEmbed);
+    });
+};
+
+$(player.init());
