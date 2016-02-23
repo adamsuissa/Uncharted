@@ -3,6 +3,8 @@
  */
 
 player = {};
+player.songid = '298';
+player.song = {};
 
 player.init = function () {
     SC.initialize({
@@ -12,16 +14,13 @@ player.init = function () {
     $('.play-btn').on('click', player.playSong);
     $('.next-btn').on('click', player.nextSong);
     $('.redheart').on('click', client.likeSong);
-    $('.heart').on('click', client.likeSong);
 };
-
-player.songid = '298';
-player.song = {};
 
 player.playSong = function playIt(){
     console.log('playit');
     client.getSong(function (sobj) {
-        player.songid = sobj['song-id'];
+        player.songid = sobj.song_id;
+        console.log(sobj.song_id);
         player.song = sobj;
         SC.get("/tracks/" + player.songid).then(function(sound){
             console.log(sound.stream_url);
