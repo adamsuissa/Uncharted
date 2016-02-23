@@ -74,7 +74,7 @@ class SaveSong(webapp2.RequestHandler):
 
 class Index(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('pages/base.html')
+        template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render())
 
 
@@ -93,23 +93,37 @@ class GetSong(webapp2.RequestHandler):
         # song_query = ndb.gql("SELECT song_id FROM Song where id=%s" % song_choice).fetch(1)
         # song_query = ndb.gql("SELECT song_id FROM Song LIMIT 1").fetch(1)
 
-        qry = Song.query(Song.id == random_id).fetch(1)[0].song_id
+        qry = Song.query(Song.id == random_id).fetch(1)[0]
 
         self.response.headers['Content-Type'] = 'application/json'
-        obj = { 'song-id': qry }
+        obj = { 'song-id': qry.song_id,
+                'id': qry.id,
+                'song_title': qry.song_title,
+                'user_name': qry.user_name,
+                'user_id': qry.user_id,
+                'user_image': qry.user_image,
+                'song_image': qry.song_image,
+                'song_url': qry.song_url,
+                'likes': qry.likes }
         self.response.out.write(json.dumps(obj))
 
 
 class WorkAroundHandler(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('pages/workaround.html')
+        template = JINJA_ENVIRONMENT.get_template('workaround.html')
         self.response.write(template.render())
 
+
+class PlayerJS(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('js/player.js')
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', Index),
     ('/song', GetSong),
     ('/savesong', SaveSong),
-    ('/populateDB', WorkAroundHandler)
+    ('/populateDB', WorkAroundHandler),
+    ('/js/player.js', PlayerJS)
 ], debug=True)
 
