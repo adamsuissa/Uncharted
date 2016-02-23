@@ -79,8 +79,8 @@ class SaveSong(webapp2.RequestHandler):
 
 class Index(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('pages/player.html')
-        self.response.write(template.render({"tracks": {}}))
+        template = JINJA_ENVIRONMENT.get_template('pages/base.html')
+        self.response.write(template.render())
 
 
 class UpdateSongLikes(webapp2.RequestHandler):
