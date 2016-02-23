@@ -9,17 +9,19 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
-- url: .*
-  script: main.app
-
 - url: /css
   static_dir: css
+  mime_type: text/css; charset=UTF-8
 
 - url: /js
   static_dir: js
 
 - url: /images
   static_dir: images
+  mime_type: image/png
+
+- url: .*
+  script: main.app
 
 libraries:
 - name: webapp2

@@ -79,10 +79,16 @@ class Index(webapp2.RequestHandler):
 
 
 class UpdateSongLikes(webapp2.RequestHandler):
+
     def post(self):
         song_id = self.request.get('song-id')
 
-        find_song_qry = Song.query(Song.song_id == song_id)
+        # find_song_qry = Song.query(Song.song_id == song_id)
+        #likes = ndb.gql("SELECT likes FROM Song WHERE song_id = %s" % song_id )
+        qry = Song.query(Song.id == song_id).fetch(1)[0]
+        likes = qry.likes + 1
+        qry.likes = likes
+        qry.put()
 
 
 class GetSong(webapp2.RequestHandler):
@@ -109,6 +115,7 @@ class WorkAroundHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', Index),
     ('/song', GetSong),
+    ('/likesong', UpdateSongLikes),
     ('/savesong', SaveSong),
     ('/populateDB', WorkAroundHandler)
 ], debug=True)
