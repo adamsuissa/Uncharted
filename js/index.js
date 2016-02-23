@@ -3,16 +3,16 @@
  */
 $(function(){
    $('.heart').on('mouseover', function(){
-       $('.heart').hide();
-       $('.redheart').show();
+       $('.heart').addClass('hidden');
+       $('.redheart').removeClass('hidden');
    })
 });
 
 $(function(){
 
     $('.redheart').on('mouseout', function () {
-        $('.redheart').hide();
-        $('.heart').show();
+        $('.redheart').addClass('hidden');
+        $('.heart').removeClass('hidden');
     })
 
 });
@@ -20,18 +20,15 @@ $(function(){
 //
 $(function(){
    $('.play-btn-hover').on('click', function(){
-       $('.play-btn-hover').hide();
-       $('.play-btn').hide();
-       $('.pause-btn').show();
+       $('.play-btn-hover').addClass('hidden');
+       $('.pause-btn').removeClass('hidden');
    })
 });
 
 //Pause
 $(function(){
    $('.pause-btn').on('click', function(){
-       $('.pause-btn').hide();
-       $('.play-btn-hover').hide();
-       $('.play-btn').show();
+       $('.pause-btn').addClass('hidden');
    })
 });
 
@@ -44,15 +41,15 @@ function keepRed(){
 //Play btn hover
 $(function(){
    $('.play-btn').on('mouseover', function(){
-       $('.play-btn').hide();
-       $('.play-btn-hover').show();
+       $('.play-btn').addClass('hidden');
+       $('.play-btn-hover').removeClass('hidden');
    })
 });
 
 $(function(){
     $('.play-btn-hover').on('mouseout', function () {
-        $('.play-btn-hover').hide();
-        $('.play-btn').show();
+        $('.play-btn-hover').addClass('hidden');
+        $('.play-btn').removeClass('hidden');
     })
 
 });
@@ -61,20 +58,20 @@ $(function(){
 //Skip btn hover
 $(function(){
    $('.skip-btn').on('mouseover', function(){
-       $('.skip-btn').hide();
-       $('.skip-btn-hover').show();
+       $('.skip-btn').addClass('hidden');
+       $('.skip-btn-hover').removeClass('hidden');
    })
 });
 
 $(function(){
     $('.skip-btn-hover').on('mouseout', function () {
-        $('.skip-btn-hover').hide();
-        $('.skip-btn').show();
+        $('.skip-btn-hover').addClass('hidden');
+        $('.skip-btn').removeClass('hidden');
     })
 
 });
 
-///////////////////////////// Adams shit code
+/////////////////////////////
 
 toggle_color("#61beb3", "#90a2c6", 4000, 2000);
 

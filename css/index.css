@@ -255,3 +255,12 @@ body{
     width: 120px;
     margin-left: 30px;
 }
+.hidden{
+    display: none;
+}
+.title{
+    color: white;
+}
+.artist{
+    color: white;
+}
