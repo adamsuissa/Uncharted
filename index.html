@@ -30,22 +30,25 @@
 
 
                 <img class="logo" src="images/Title.png">
-
-                <img class="artwork" src="images/trippy.jpg">
-                <h3 class="title">Always look on the bright side of life </h3>
-                <h3 class="artist">Max Prais</h3>
-
+                <div class="song-info-cont">
+                    <img class="artwork" src="images/trippy.jpg">
+                    <h3 class="title">Always look on the bright side of life </h3>
+                    <h3 class="artist">Max Prais</h3>
+                </div>
 
                 <div class="media-button-cont">
 
                     <audio controls id="audio-test" style="display:none" src="https://api.soundcloud.com/tracks/47506738/stream?client_id=27bcac07db1cde6ee2ff5f3ad8d79969"></audio>
 
                     <img class="clickable heart" src="images/greyheart.png">
-                    <img class="clickable redheart" style="display:none" src="images/redheart.png">
+                    <img class="clickable redheart" style="display:none" src="images/redheart.png" onclick="keepRed()">
                     <img class="clickable play-btn" src="images/playbutton.png">
+                    <img class="clickable play-btn-hover" src="images/invertedplaybutton.png" style="display:none">
                     <img class="clickable pause-btn" style="display:none" src="images/pausebutton.png">
 
                     <img class="clickable skip-btn" src="images/skipfinal.png">
+                    <img class="clickable skip-btn-hover" src="images/invertedskip.png" style="display:none">
+
                 </div>
 
 
