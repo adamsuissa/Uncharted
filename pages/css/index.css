@@ -20,6 +20,7 @@
     }
     .media-button-cont{
         margin-top: 60%;
+
     }
 }
 @media screen and (min-width: 500px){
@@ -29,6 +30,9 @@
     }
     .media-button-cont{
         margin-top: 55%;
+    }
+    .sidebar{
+        display: inline-block;
     }
 }
 

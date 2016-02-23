@@ -11,16 +11,18 @@ player.init = function () {
     console.log('jquery init');
     $('.play-btn').on('click', player.playSong);
     $('.next-btn').on('click', player.nextSong);
+
 };
-player.songid = '47506738';
+player.songid = '298';
 
 player.playSong = function playIt(){
     console.log('playit');
     SC.get("/tracks/" + player.songid).then(function(sound){
         url = sound.stream_url + "?client_id=27bcac07db1cde6ee2ff5f3ad8d79969";
-
+        console.log(sound.stream_url);
+        var url = sound.stream_url + "?client_id=27bcac07db1cde6ee2ff5f3ad8d79969";
         $("#audio-test").attr("src", url);
-        $("#audio-test")[0].play()
+        $("#audio-test")[0].play();
     });
 };
 
