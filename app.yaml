@@ -22,7 +22,10 @@ handlers:
 
 - url: .*
   script: main.app
+  mime_type: image/png
 
+- url: .*
+  script: main.app
 
 libraries:
 - name: webapp2

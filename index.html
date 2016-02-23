@@ -17,28 +17,33 @@
 
 
     <script src="js/index.js"></script>
+    <script src="js/client.js"></script>
+    <script src="js/player.js"></script>
 <body>
 
 <div class="container-fluid">
     <div class="row">
+
         <div class="wrapper">
-        <div class="player-cont">
             <div class="sidebar" style="display:none"></div>
+            <div class="player-cont">
 
-            <img class="logo" src="images/Title.png">
+
+                <img class="logo" src="images/Title.png">
 
 
-            <div class="media-button-cont">
+                <div class="media-button-cont">
+                    <img class="clickable play-btn" src="images/play.jpg">
+                    <audio controls id="audio-test" style="display:none" src="https://api.soundcloud.com/tracks/47506738/stream?client_id=27bcac07db1cde6ee2ff5f3ad8d79969"></audio>
+                    <img class="clickable heart" src="images/newheart.png">
+                    <img class="clickable redheart" style="display:none" src="images/greyheart.png">
+                </div>
 
-                <img class="clickable play-btn" src="images/play.jpg">
-                <audio controls id="audio-test" style="display:none" src="https://api.soundcloud.com/tracks/47506738/stream?client_id=27bcac07db1cde6ee2ff5f3ad8d79969"></audio>
-                <img class="clickable heart" src="images/newheart.png">
-                <img class="clickable redheart" style="display:none" src="images/heart_grey.png">
+
             </div>
             <div class="sidebar1" style="display:none"></div>
-
         </div>
-            </div>
+
     </div>
 
 </div>

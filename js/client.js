@@ -16,3 +16,7 @@ client.getSong = function (success) {
     });
     success(song);
 };
+
+client.likeSong = function() {
+    $.post("/likesong", { 'song-id': player.songid });
+};

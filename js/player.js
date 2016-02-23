@@ -11,13 +11,18 @@ player.init = function () {
     console.log('jquery init');
     $('.play-btn').on('click', player.playSong);
     $('.next-btn').on('click', player.nextSong);
+    $('.redheart').on('click', client.likeSong);
+    $('.heart').on('click', client.likeSong);
 };
+
 player.songid = '298';
+player.song = {};
 
 player.playSong = function playIt(){
     console.log('playit');
-    client.getSong(function (sid) {
-        player.songid = sid;
+    client.getSong(function (sobj) {
+        player.songid = sobj['song-id'];
+        player.song = sobj;
         SC.get("/tracks/" + player.songid).then(function(sound){
             console.log(sound.stream_url);
             var url = sound.stream_url + "?client_id=27bcac07db1cde6ee2ff5f3ad8d79969";
