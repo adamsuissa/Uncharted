@@ -13,10 +13,17 @@ player.init = function () {
     console.log('jquery init');
     $('.play-btn-hover').on('click', player.playSong);
     $('.skip-btn-hover').on('click', player.nextSong);
+    $('.play-btn-hover').on('click', function () {
+        $("#audio-test")[0].play();
+    });
+    $('.skip-btn-hover').on('click', player.playSong);
     $('.redheart').on('click', client.likeSong);
+    $('.pause-btn').on('click', function () {
+        $("#audio-test")[0].pause();
+    });
 };
 
-player.playSong = function playIt(){
+player.playSong = function () {
     console.log('playit');
     client.getSong(function (sobj) {
         player.songid = sobj.song_id;
