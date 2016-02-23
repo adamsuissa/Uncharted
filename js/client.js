@@ -13,10 +13,17 @@ client.getSong = function (success) {
         song.song_image = data.song_image;
         song.song_url = data.song_url;
         song.likes = data.likes;
+
+        client.liked = false;
         success(song);
     });
 };
 
 client.likeSong = function() {
-    $.post("/likesong", { 'song-id': player.songid });
+    if (!client.liked) {
+        $.post("/likesong", {'song-id': player.songid}, function () {
+            $('.heart').removeClass('heart').addClass('heartclicked');
+        });
+        client.liked = true;
+    }
 };
