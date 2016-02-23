@@ -1,0 +1,40 @@
+#logo {
+    height: 500px;
+    width:auto;
+    margin-left: 30%;
+    margin-top: 10%;
+    border-radius: 52%;
+}
+
+body {
+    background-color: #2E2E2E;
+}
+
+#yo {
+    border: solid;
+    height:100px;
+    width: 100px;
+}
+
+#sc-widget {
+    height: 40%;
+    width: 40%;
+    margin-left: 15%;
+    margin-top: 50%;
+}
+
+#widgetContainer {
+    margin-left: 15%;
+    margin-top: 15%;
+}
+
+h3 {
+    color: white;
+}
+
+#heart {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
