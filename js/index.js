@@ -1,7 +1,7 @@
 /**
  * Created by User on 2/23/2016.
  */
-$(function(){
+/*$(function(){
    $('.heart').on('mouseover', function(){
        $('.heart').addClass('hidden');
        $('.redheart').removeClass('hidden');
@@ -82,7 +82,14 @@ $(function(){
         return true;
     }
     return false;
-}
+}*/
+
+$(function () {
+    $('.skip-btn').on('click', function () {
+        $('.redheart').addClass('hidden');
+        $('.heart').removeClass('hidden');
+    });
+});
 
 /////////////////////////////
 

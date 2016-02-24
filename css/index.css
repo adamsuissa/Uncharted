@@ -1,8 +1,7 @@
 .player-cont{
     /*background-color: #38149A;*/
-    background-image: url("../images/supertrippylowres.jpg");
-    background-size: contain;
-    background-repeat: no-repeat;
+    background-image: url("../images/supertrippysmall.jpg");
+    background-size: cover;
     height: 100%;
     width: 48%;
     display: inline-block;
@@ -76,7 +75,7 @@
 @media screen and (min-width: 500px) {
     .player-cont {
         width: 100%;
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
     }
 
@@ -94,7 +93,7 @@
 @media screen and (min-width: 542px){
     .player-cont{
         width: 80%;
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
     }
     .logo{
@@ -122,7 +121,7 @@
 @media screen and (min-width: 674px){
     .player-cont{
         width: 80%;
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
     }
     .logo{
@@ -141,7 +140,7 @@
 @media screen and (min-width: 759px){
     .player-cont{
         width: 80%;
-        background-size: contain;
+        background-size: cover;
         /*!*background-image: url("../images/trippy.jpg");*!*/
     }
     .logo{
@@ -160,7 +159,7 @@
 @media screen and (min-width: 957px){
     .player-cont{
         width: 80%;
-        background-size: contain;
+        background-size: cover;
     }
     .media-button-cont{
         margin-top: 25%;
@@ -175,7 +174,7 @@
 @media screen and (min-width: 1067px){
     .player-cont{
         width: 80%;
-        background-size: contain;
+        background-size: cover;
     }
     .media-button-cont{
         margin-top: 15%;
@@ -190,10 +189,10 @@
 @media screen and (max-width: 2500px){
     .player-cont{
         width: 80%;
-        background-size: contain;
+        background-size: cover;
     }
     .media-button-cont{
-        margin-top: 15%;
+        margin-top: 3%;
     }
     .sidebar{
         display: inline-block;
@@ -220,7 +219,8 @@ body{
     webkit-transition: all 1s;
     transition: all 1s;
     font-weight: 100;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Century Gothic', sans-serif;
+    text-transform: capitalize;
 
 }
 
@@ -252,8 +252,8 @@ body{
     width: 120px;
 }
 .artwork{
-    height: 120px;
-    width: 120px;
+    height: 300px;
+    width: 350px;
 }
 .song-info-cont{
     display: block;

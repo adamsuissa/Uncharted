@@ -23,7 +23,7 @@ client.likeSong = function() {
     if (!player.song.liked) {
         $.post("/likesong", {'song-id': player.songid});
         player.song.liked = true;
-        $('.redheart').addClass('hidden');
-        $('.heart').removeClass('hidden');
+        $('.heart').addClass('hidden');
+        $('.redheart').removeClass('hidden');
     }
 };
