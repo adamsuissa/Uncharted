@@ -14,7 +14,6 @@ client.getSong = function (success) {
         song.song_url = data.song_url;
         song.likes = data.likes;
 
-        client.liked = false;
         success(song);
     });
 };
@@ -25,5 +24,13 @@ client.likeSong = function() {
         player.song.liked = true;
         $('.heart').addClass('hidden');
         $('.redheart').removeClass('hidden');
+        $('.heart').removeClass('clickable');
+        $('.redheart').removeClass('clickable');
     }
+};
+
+client.removeSong = function () {
+    $.post('/removesong', {'song-id': player.songid}, function () {
+        player.log('delete successful');
+    });
 };

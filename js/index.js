@@ -1,12 +1,5 @@
-/**
- * Created by User on 2/23/2016.
- */
-/*$(function(){
-   $('.heart').on('mouseover', function(){
-       $('.heart').addClass('hidden');
-       $('.redheart').removeClass('hidden');
-   })
-});
+
+/*
 
 $(function(){
     $('.redheart').on('mouseout', function () {
@@ -70,47 +63,60 @@ $(function(){
     })
 
 });
-
-    function togglePlay(on) {
-    if (on && !player.playing) {
-        $('.play-btn').addClass('hidden');
-        $('.play-btn-hover').addClass('hidden');
-        return true;
-    }
-    if (!on && player.playing) {
-
-        return true;
-    }
-    return false;
 }*/
 
-$(function () {
+interface = {};
+interface.seizures = true;
+
+interface.bindings = function () {
     $('.skip-btn').on('click', function () {
         $('.redheart').addClass('hidden');
         $('.heart').removeClass('hidden');
+        $('.play-btn').addClass('hidden');
+        $('.pause-btn').removeClass('hidden');
+        $('.heart').addClass('clickable');
+        $('.redheart').addClass('clickable');
     });
-});
 
-/////////////////////////////
+    $('.play-btn').on('click', function () {
+        $('.play-btn').addClass('hidden');
+        $('.pause-btn').removeClass('hidden');
+        player.playing = true;
+    });
 
+    $('.pause-btn').on('click', function () {
+        $('.play-btn').removeClass('hidden');
+        $('.pause-btn').addClass('hidden');
+        player.playing = false;
+    });
+};
 
-$(document).ready(function(){
+interface.init = function () {
+    interface.bindings();
+    interface.seizureGenerator(3000);
+};
+
+//////////// ADAM's SHIT CODE ////////
+
+interface.seizureGenerator = function (interval) {
     function getRandomColor() {
         var letters = '0123456789ABCDEF'.split('');
         var color = '#';
-        for (var i = 0; i < 6; i++ ) {
-            color += letters[Math.floor(Math.random() * 16)];
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * letters.length)];
         }
         return color;
     }
 
-    function change_random_bgcolor(change_time) {
-        setInterval(function change_color() {
-
+    setInterval(function () {
+        if (interface.seizures) {
             $("body").css({
-                "background-color": getRandomColor()
+                'background-color': getRandomColor()
             });
-        }, change_time);
-    }
-    change_random_bgcolor(3000);
-});
+        }
+    }, interval);
+};
+
+//////////// END SHIT CODE ////////
+
+$(interface.init);
