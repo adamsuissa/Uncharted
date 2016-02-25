@@ -66,57 +66,68 @@ $(function(){
 }*/
 
 interface = {};
-interface.seizures = true;
 
-interface.bindings = function () {
-    $('.skip-btn').on('click', function () {
-        $('.redheart').addClass('hidden');
-        $('.heart').removeClass('hidden');
-        $('.play-btn').addClass('hidden');
-        $('.pause-btn').removeClass('hidden');
-        $('.heart').addClass('clickable');
-        $('.redheart').addClass('clickable');
-    });
+(function (interface) {
+    interface = interface || {};
+    interface.seizures = true;
 
-    $('.play-btn').on('click', function () {
-        $('.play-btn').addClass('hidden');
-        $('.pause-btn').removeClass('hidden');
-        player.playing = true;
-    });
+    interface.bindings = function () {
+        $('.skip-btn').on('click', function () {
+            $('.redheart').addClass('hidden');
+            $('.heart').removeClass('hidden');
+            $('.heart').addClass('clickable');
+            $('.redheart').addClass('clickable');
 
-    $('.pause-btn').on('click', function () {
-        $('.play-btn').removeClass('hidden');
-        $('.pause-btn').addClass('hidden');
-        player.playing = false;
-    });
-};
+            $('.play-btn').addClass('hidden');
+            $('.pause-btn').removeClass('hidden');
+        });
 
-interface.init = function () {
-    interface.bindings();
-    interface.seizureGenerator(3000);
-};
+        $('.play-btn').on('click', function () {
+            $('.play-btn').addClass('hidden');
+            $('.pause-btn').removeClass('hidden');
+        });
+
+        $('.pause-btn').on('click', function () {
+            $('.play-btn').removeClass('hidden');
+            $('.pause-btn').addClass('hidden');
+        });
+
+        $('.heart').on('click', function () {
+            if (!player.song.liked) {
+                $('.heart').addClass('hidden');
+                $('.redheart').removeClass('hidden');
+                $('.heart').removeClass('clickable');
+                $('.redheart').removeClass('clickable');
+            }
+        });
+    };
+
+    interface.init = function () {
+        interface.bindings();
+        interface.seizureGenerator(3000);
+    };
 
 //////////// ADAM's SHIT CODE ////////
-
-interface.seizureGenerator = function (interval) {
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF'.split('');
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * letters.length)];
+    interface.seizureGenerator = function (interval) {
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * letters.length)];
+            }
+            return color;
         }
-        return color;
-    }
 
-    setInterval(function () {
-        if (interface.seizures) {
-            $("body").css({
-                'background-color': getRandomColor()
-            });
-        }
-    }, interval);
-};
-
+        setInterval(function () {
+            if (interface.seizures) {
+                $("body").css({
+                    'background-color': getRandomColor()
+                });
+            }
+        }, interval);
+    };
 //////////// END SHIT CODE ////////
+
+})(interface);
 
 $(interface.init);
