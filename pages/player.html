@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <title>Uncharted Radio</title>
 
@@ -11,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-    <!--jQuery CDN -->
+    <!-- JS CDN -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
@@ -27,10 +29,10 @@
     <script src="../js/player.js"></script>
     <script src="../js/client.js"></script>
 
-
-
 </head>
+
 <body>
+
 <!--Nav-->
 <div class="container-fluid top-wrapper">
     <div class="row">
@@ -38,46 +40,59 @@
     </div>
 </div>
 <!--End Nav-->
+
 <!--Player-->
 <div class="container main-wrapper">
+
     <div class="row">
+
         <div class="player-cont">
 
             <div class="song-info-cont">
                 <img class="artwork" src="http://www.thestrut.com/wp-content/uploads/2012/11/tame.png">
-                <h3 class="title">Feels Like We Always Go Backwards</h3>
+                <h3 class="title">Feels Like We Only Go Backwards</h3>
                 <h3 class="artist">Tame Impala</h3>
             </div>
 
             <div class="media-button-cont">
-                <audio controls id="audio-test" style="display:none" src="https://api.soundcloud.com/tracks/47506738/stream?client_id=27bcac07db1cde6ee2ff5f3ad8d79969"></audio>
+                <audio id="audio-player" src="https://api.soundcloud.com/tracks/47506738/stream?client_id=27bcac07db1cde6ee2ff5f3ad8d79969" controls style="display:none">
+                    Your browser does not support the audio player. Try using another browser.
+                </audio>
                 <i class="fa fa-heart fa-2x heart clickable"></i>
                 <i class="play-btn fa fa-play fa-2x clickable"></i>
                 <i class="pause-btn fa fa-pause fa-2x clickable hidden"></i>
                 <i class="next-btn fa fa-forward fa-2x clickable"></i>
-
             </div>
+
         </div>
 
     </div>
+
 </div>
 <!--End Player-->
 
 <!--Footer-->
 <footer class="footer">
+
     <div class="container-fluid">
+
         <div class="row">
             <hr>
+
             <div class="navigation">
                 <a href="/about"><span class="info-link">ABOUT</span></a>
                 <a href="/radio"><span class="info-link">RADIO</span></a>
                 <a href="/artist"><span class="info-link">ARTISTS</span></a>
             </div>
+
             <hr>
-            Made with ♥ by Max Prais, Ari Kenan, and Adam Suissa
+            Made with ♥ by Max Prais, Ari Kenan. Background by Adam Suissa
         </div>
+
     </div>
 
 </footer>
+<!--End Footer-->
+
 </body>
 </html>
