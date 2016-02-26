@@ -120,7 +120,7 @@ class PlayerJS(webapp2.RequestHandler):
         self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
-    ('/', Player),
+    ('/', About),
     ('/radio', Player),
     ('/about', About),
     ('/artist', Artist),
