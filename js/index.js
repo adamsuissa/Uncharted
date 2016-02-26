@@ -1,12 +1,12 @@
 
-var interface = {};
+UI = {};
 
-(function (interface) {
+(function (UI) {
 
-    interface = interface || {};
-    interface.seizures = true;
+    UI = UI || {};
 
-    interface.bindings = function () {
+    UI.bindings = function () {
+
         $('.next-btn').on('click', function () {
             $('.heart').removeClass('red');
             $('.heart').addClass('clickable');
@@ -30,12 +30,13 @@ var interface = {};
                 $('.heart').removeClass('clickable');
             }
         });
+
     };
 
-    interface.init = function () {
-        interface.bindings();
+    UI.init = function () {
+        UI.bindings();
     };
 
-})(interface);
+})(UI);
 
-$(interface.init);
+$(UI.init);

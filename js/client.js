@@ -1,7 +1,8 @@
 
-var client = {};
+client = {};
 
 (function (client) {
+
     client = client || {};
 
     client.getSong = function (success) {
@@ -17,13 +18,6 @@ var client = {};
             song.song_url = data.song_url;
             song.likes = data.likes;
 
-            client.likeSong = function() {
-                if (!player.song.liked) {
-                    $.post("/likesong", {'song-id': player.songid});
-                    player.song.liked = true;
-
-                }
-            };
             success(song);
         });
     };
@@ -40,4 +34,5 @@ var client = {};
             player.log('delete successful');
         });
     };
+
 })(client);
