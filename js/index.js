@@ -2,6 +2,7 @@
 var interface = {};
 
 (function (interface) {
+
     interface = interface || {};
     interface.seizures = true;
 
@@ -33,29 +34,7 @@ var interface = {};
 
     interface.init = function () {
         interface.bindings();
-        //interface.seizureGenerator(3000);
     };
-
-//////////// ADAM's SHIT CODE ////////
-//    interface.seizureGenerator = function (interval) {
-//        function getRandomColor() {
-//            var letters = '0123456789ABCDEF'.split('');
-//            var color = '#';
-//            for (var i = 0; i < 6; i++) {
-//                color += letters[Math.floor(Math.random() * letters.length)];
-//            }
-//            return color;
-//        }
-//
-//        setInterval(function () {
-//            if (interface.seizures) {
-//                $("body").css({
-//                    'background-color': getRandomColor()
-//                });
-//            }
-//        }, interval);
-//    };
-//////////// END SHIT CODE ////////
 
 })(interface);
 

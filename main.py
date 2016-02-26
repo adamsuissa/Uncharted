@@ -112,13 +112,6 @@ class WorkAroundHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('workaround.html')
         self.response.write(template.render())
 
-
-class PlayerJS(webapp2.RequestHandler):
-
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('js/player.js')
-        self.response.write(template.render())
-
 app = webapp2.WSGIApplication([
     ('/', Player),
     ('/radio', Player),
