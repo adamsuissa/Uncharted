@@ -21,9 +21,11 @@ client.getSong = function (success) {
 
 client.likeSong = function() {
     if (!player.song.liked) {
+        $('.heart').addClass('red');
         $.post("/likesong", {'song-id': player.songid});
         player.song.liked = true;
-        $('.heart').addClass('hidden');
-        $('.redheart').removeClass('hidden');
+        //$('.heart').addClass('hidden');
+        //$('.redheart').removeClass('hidden');
+
     }
 };
