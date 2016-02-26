@@ -17,16 +17,13 @@ var client = {};
             song.song_url = data.song_url;
             song.likes = data.likes;
 
-client.likeSong = function() {
-    if (!player.song.liked) {
-        $('.heart').addClass('red');
-        $.post("/likesong", {'song-id': player.songid});
-        player.song.liked = true;
-        //$('.heart').addClass('hidden');
-        //$('.redheart').removeClass('hidden');
+            client.likeSong = function() {
+                if (!player.song.liked) {
+                    $.post("/likesong", {'song-id': player.songid});
+                    player.song.liked = true;
 
-    }
-};
+                }
+            };
             success(song);
         });
     };

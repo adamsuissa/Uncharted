@@ -10,6 +10,9 @@ body{
 .product-description{
     margin-top: 100px;
 }
+.email{
+    color: darkblue;
+}
 .clickable{
     cursor: pointer;
 }

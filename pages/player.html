@@ -5,7 +5,7 @@
     <title>Uncharted Radio</title>
 
     <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="../css/about.css">
+    <link rel="stylesheet" type="text/css" href="../css/player.css">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -23,9 +23,11 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
     <!--JS Files-->
+    <script src="../js/index.js"></script>
     <script src="../js/player.js"></script>
     <script src="../js/client.js"></script>
-    <script src="../js/index.js"></script>
+
+
 
 </head>
 <body>
@@ -34,26 +36,34 @@
     <div class="row">
         <img class="logo" src="../images/logos.png">
     </div>
-
-
-
 </div>
-
-<div class="container-fluid main-wrapper">
+<!--End Nav-->
+<!--Player-->
+<div class="container main-wrapper">
     <div class="row">
-        <div class="intro">
-            <h2 class="about-header">Welcome to Uncharted Radio</h2>
-            <hr>
-            <h4 class="product-description">uncharted radio is a simple service that plays you music that you might be  otherwise unlikely to hear</h4>
-            <div class="listen-div">
-                <h4 class="ready">Ready to listen?</h4>
-                <a href="/radio"><div class="clickable logos"></div></a>
+        <div class="player-cont">
+
+            <div class="song-info-cont">
+                <img class="artwork" src="http://www.thestrut.com/wp-content/uploads/2012/11/tame.png">
+                <h3 class="title">Feels Like We Always Go Backwards</h3>
+                <h3 class="artist">Tame Impala</h3>
+            </div>
+
+            <div class="media-button-cont">
+                <audio controls id="audio-test" style="display:none" src="https://api.soundcloud.com/tracks/47506738/stream?client_id=27bcac07db1cde6ee2ff5f3ad8d79969"></audio>
+                <i class="fa fa-heart fa-2x heart clickable"></i>
+                <i class="play-btn fa fa-play fa-2x clickable"></i>
+                <i class="pause-btn fa fa-pause fa-2x clickable hidden"></i>
+                <i class="next-btn fa fa-forward fa-2x clickable"></i>
+
             </div>
         </div>
+
     </div>
 </div>
+<!--End Player-->
 
-
+<!--Footer-->
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">

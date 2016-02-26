@@ -43,12 +43,23 @@ class SaveSong(webapp2.RequestHandler):
         new_song.put()
 
 
-class Index(webapp2.RequestHandler):
+class Player(webapp2.RequestHandler):
 
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('pages/playeredo.html')
+        template = JINJA_ENVIRONMENT.get_template('pages/player.html')
         self.response.write(template.render())
 
+class About(webapp2.RequestHandler):
+
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('pages/about.html')
+        self.response.write(template.render())
+
+class Artist(webapp2.RequestHandler):
+
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('pages/artist.html')
+        self.response.write(template.render())
 
 class UpdateSongLikes(webapp2.RequestHandler):
 
@@ -109,7 +120,10 @@ class PlayerJS(webapp2.RequestHandler):
         self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
-    ('/', Index),
+    ('/', Player),
+    ('/radio', Player),
+    ('/about', About),
+    ('/artist', Artist),
     ('/song', GetSong),
     ('/likesong', UpdateSongLikes),
     ('/savesong', SaveSong),

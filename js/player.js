@@ -8,6 +8,7 @@ player.song = { liked: false };
 player.playing = false;
 
 player.init = function () {
+    console.log('play')
     SC.initialize({
         client_id: '27bcac07db1cde6ee2ff5f3ad8d79969'
     });
@@ -28,16 +29,16 @@ player.init = function () {
 
 player.playSong = function () {
     console.log('playsong');
-    $('.heart').removeClass('red');
-    $('.play-btn').addClass('hidden');
-    $('.pause-btn').removeClass('hidden');
+    //$('.heart').removeClass('red');
+    //$('.play-btn').addClass('hidden');
+    //$('.pause-btn').removeClass('hidden');
     client.getSong(function (sobj) {
         player.songid = sobj.song_id;
         player.song = sobj;
         simage = sobj.song_image || sobj.user_image || '';
         $('.artwork').attr('src', simage);
         console.log('getsong');
-        SC.get("/tracks/" + player.songid).then(function(sound) {
+        SC.get("/tracks/" + player.songid).then(function (sound) {
             console.log(sobj.song_title);
             $('.title').text(sobj.song_title);
             $('.artist').text(sobj.user_name);
@@ -47,8 +48,10 @@ player.playSong = function () {
             $("#audio-test").attr("src", url);
             $("#audio-test")[0].play();
             player.playing = true;
+        });
+    });
+};
 
-        }
 (function (player) {
     player = player || {};
     player.songid = '47506486';
@@ -68,7 +71,7 @@ player.playSong = function () {
             client_id: '27bcac07db1cde6ee2ff5f3ad8d79969'
         });
 
-        $('.skip-btn').on('click', function () {
+        $('.next-btn').on('click', function () {
             player.newSong();
             player.playing = true;
         });
@@ -113,6 +116,7 @@ player.playSong = function () {
             });
         });
     };
-})(player.init)
+})(player.init);
 
+$(player.init);
 
