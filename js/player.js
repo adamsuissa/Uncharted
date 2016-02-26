@@ -7,8 +7,8 @@ player = {};
     player.songid = '47506486';
     player.song = {liked: false};
     player.playing = false;
-    player.DEFAULT_ARTWORK = '';
     player.debugMode = true;
+    const DEFAULT_ARTWORK = '';
 
     player.log = function (str) {
         if (player.debugMode) {
@@ -42,18 +42,17 @@ player = {};
     };
 
     player.newSong = function () {
-        player.log('newSong');
 
         client.getSong(function (sobj) {
 
             player.log('getsong');
             player.songid = sobj.song_id;
             player.song = sobj;
-            player.artwork = sobj.song_image || sobj.user_image || player.DEFAULT_ARTWORK;
+            player.artwork = sobj.song_image || sobj.user_image || DEFAULT_ARTWORK;
             $('.artwork').attr('src', player.artwork);
 
             SC.get("/tracks/" + player.songid).then(function (sound) {
-                player.log('playing: ' + sobj.song_title);
+                player.log('playing: ' + sobj.user_name + ' - ' + sobj.song_title);
                 $('.title').text(sobj.song_title);
                 $('.artist').text(sobj.user_name);
 
