@@ -1,19 +1,3 @@
-#!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
 import os
 import webapp2
 import jinja2
@@ -29,6 +13,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 
 class Song(ndb.Model):
+
     id = ndb.IntegerProperty()
     song_title = ndb.StringProperty()
     song_id = ndb.IntegerProperty()
@@ -38,21 +23,6 @@ class Song(ndb.Model):
     song_image = ndb.StringProperty()
     song_url = ndb.StringProperty()
     likes = ndb.IntegerProperty()
-
-
-
-    # # def post(self):
-    #     song_title = self.request.get('song-title')
-    #     song_id = self.request.get('song-id')
-    #     user_name = self.request.get('user-name')
-    #     user_id = self.request.get('user-id')
-    #     user_image = self.request.get('user-name')
-    #     song_image = self.request.get('song-image')
-    #     song_url = self.request.get('song-url')
-    #
-    #     new_song = Song()
-    #     new_song.populate(song_title=song_title, song_id=song_id, user_name=user_name, user_id=user_id, user_image=user_image, song_image=song_image, song_url=song_url)
-    #     new_song.put()
 
 
 class SaveSong(webapp2.RequestHandler):
@@ -66,6 +36,7 @@ class SaveSong(webapp2.RequestHandler):
         song_image = self.request.get('song-image')
         song_url = self.request.get('song-url')
         id = self.request.get('id')
+
         new_song = Song()
         new_song.populate(id=int(id), song_title=song_title, song_id=int(song_id), user_name=user_name, user_id=int(user_id),
                           user_image=user_image, song_image=song_image, song_url=song_url, likes=0)
@@ -73,6 +44,7 @@ class SaveSong(webapp2.RequestHandler):
 
 
 class Index(webapp2.RequestHandler):
+
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('pages/playeredo.html')
         self.response.write(template.render())
@@ -92,6 +64,7 @@ class UpdateSongLikes(webapp2.RequestHandler):
 
 
 class GetSong(webapp2.RequestHandler):
+
     def get(self):
         size = 200 # todo: make dynamic query
         random_id = random.randint(0, size-1)
@@ -114,13 +87,23 @@ class GetSong(webapp2.RequestHandler):
         self.response.out.write(json.dumps(obj))
 
 
+class RemoveSong(webapp2.RequestHandler):
+
+    def post(self):
+        song_id = self.request.get('song-id')
+        qry = Song.query(Song.song_id == int(song_id)).fetch(1)[0]
+        qry.key.delete()
+
+
 class WorkAroundHandler(webapp2.RequestHandler):
+
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('workaround.html')
         self.response.write(template.render())
 
 
 class PlayerJS(webapp2.RequestHandler):
+
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('js/player.js')
         self.response.write(template.render())
@@ -130,7 +113,7 @@ app = webapp2.WSGIApplication([
     ('/song', GetSong),
     ('/likesong', UpdateSongLikes),
     ('/savesong', SaveSong),
-    ('/populateDB', WorkAroundHandler),
-    ('/js/player.js', PlayerJS)
+    ('/removesong', RemoveSong),
+    ('/populateDB', WorkAroundHandler)
 ], debug=True)
 
