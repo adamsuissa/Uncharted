@@ -68,7 +68,7 @@ player = {};
         });
     };
 
-})(player.init);
+})(player);
 
 $(player.init);
 
