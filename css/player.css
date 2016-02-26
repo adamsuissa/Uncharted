@@ -205,3 +205,15 @@ a:hover{
         width: 320px;
     }
 }
+
+@media screen and (max-width: 668px){
+    .navigation{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 341px){
+    a{
+        display: block;
+    }
+}

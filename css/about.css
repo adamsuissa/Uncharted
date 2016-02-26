@@ -91,6 +91,9 @@ body{
     }
 }
 
+
+
+
 .info-holder{
     text-align: center;
     display: inline-block;
@@ -117,4 +120,16 @@ body{
 .info-link:hover{
     color: #62DA64;
     text-decoration: none;
+}
+
+@media screen and (max-width: 668px){
+    .navigation{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 341px){
+    a{
+        display: block;
+    }
 }
