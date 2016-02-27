@@ -28,19 +28,23 @@ class Song(ndb.Model):
 class SaveSong(webapp2.RequestHandler):
 
     def post(self):
-        song_title = self.request.get('song-title')
         song_id = self.request.get('song-id')
-        user_name = self.request.get('user-name')
-        user_id = self.request.get('user-id')
-        user_image = self.request.get('user-image')
-        song_image = self.request.get('song-image')
-        song_url = self.request.get('song-url')
-        id = self.request.get('id')
+        qry = Song.query(Song.song_id == int(song_id)).fetch()
 
-        new_song = Song()
-        new_song.populate(id=int(id), song_title=song_title, song_id=int(song_id), user_name=user_name, user_id=int(user_id),
-                          user_image=user_image, song_image=song_image, song_url=song_url, likes=0)
-        new_song.put()
+        if qry.length == 0:
+            song_title = self.request.get('song-title')
+            song_id = self.request.get('song-id')
+            user_name = self.request.get('user-name')
+            user_id = self.request.get('user-id')
+            user_image = self.request.get('user-image')
+            song_image = self.request.get('song-image')
+            song_url = self.request.get('song-url')
+            id = self.request.get('id')
+
+            new_song = Song()
+            new_song.populate(id=int(id), song_title=song_title, song_id=int(song_id), user_name=user_name, user_id=int(user_id),
+                              user_image=user_image, song_image=song_image, song_url=song_url, likes=0)
+            new_song.put()
 
 
 class Player(webapp2.RequestHandler):

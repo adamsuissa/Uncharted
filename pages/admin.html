@@ -28,10 +28,14 @@
                     allsongs.push(song);
                 });
                 populateList();
-                randSelect = Math.floor(Math.random() * allsongs.length);
-                $('.song-list option:eq(' + randSelect + ')').prop('selected', true)
+                randomSong();
                 populateInfo();
             });
+        }
+
+        function randomSong() {
+            randSelect = Math.floor(Math.random() * allsongs.length);
+            $('.song-list option:eq(' + randSelect + ')').prop('selected', true)
         }
 
         function songFilter(song) {
