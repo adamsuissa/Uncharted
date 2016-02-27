@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Uncharted admin page</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="../js/client.js"></script>
+    <script>
+        allsongs = [];
+
+        function getAllSongs() {
+            $.get('/allsongs', function (data) {
+                data = JSON.parse(data);
+                data.forEach(function (val, ind) {
+                    var song = {};
+                    song.song_id = val.song_id;
+                    song.id = val.id;
+                    song.song_title = val.song_title;
+                    song.user_name = val.user_name;
+                    song.user_id = val.user_id;
+                    song.user_image = val.user_image;
+                    song.song_image = val.song_image;
+                    song.song_url = val.song_url;
+                    song.likes = val.likes;
+                    allsongs.push(song);
+                });
+                populateList();
+            });
+        }
+
+        function songFilter(song) {
+            return eval($('.list-eval').val());
+        }
+
+        function populateList() {
+            $('.song-list').empty();
+            allsongs.forEach(function (val, ind) {
+                if (songFilter(val)) {
+                    $option = $('<option>');
+                    $option.attr('value', ind);
+                    $option.text(val.user_name + ' - ' + val.song_title);
+                    $('.song-list').append($option);
+                }
+            });
+        }
+
+        function populateInfo() {
+            currentSong = allsongs[$('.song-list').val()];
+            $('.info-cont').empty();
+            for (key in currentSong) {
+                $div = $('<div>');
+                $div.text(key + ': ' + currentSong[key]);
+                $('.info-cont').append($div);
+                //$('#' + key).text(key + ': ' + currentSong[key]);
+            }
+        }
+
+        $(function () {
+            getAllSongs();
+            $('.song-list').on('change', populateInfo);
+            $('#addLike').on('click', function () {
+                $.post("/likesong", {'song-id': allsongs[$('.song-list').val()].song_id});
+            });
+            $('#removeSong').on('click', function () {
+                $.post('/removesong', {'song-id': allsongs[$('.song-list').val()].song_id});
+            });
+            $('.filter-list').on('click', populateList);
+        });
+    </script>
+</head>
+
+<body>
+    <select class="song-list"></select>
+    <input type="text" class="list-eval" value="true">
+    <input type="button" class="filter-list" value="Filter">
+    <div class="info-cont"></div>
+    <div id="id"></div>
+    <div id="song_id"></div>
+    <div id="song_title"></div>
+    <div id="user_name"></div>
+    <div id="user_id"></div>
+    <div id="user_image"></div>
+    <div id="song_image"></div>
+    <div id="song_url"></div>
+    <div id="likes"></div>
+    <button id="removeSong">Remove Song</button>
+    <button id="addLike">Add Like</button>
+</body>
+
+</html>
