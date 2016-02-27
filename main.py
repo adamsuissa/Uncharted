@@ -69,8 +69,8 @@ class UpdateSongLikes(webapp2.RequestHandler):
         # find_song_qry = Song.query(Song.song_id == song_id)
         #likes = ndb.gql("SELECT likes FROM Song WHERE song_id = %s" % song_id )
         qry = Song.query(Song.song_id == int(song_id)).fetch(1)[0]
-        likes = qry.likes + 1
-        qry.likes = likes
+        # likes = qry.likes + 1
+        qry.likes += 1
         qry.put()
 
 

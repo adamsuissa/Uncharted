@@ -1,9 +1,33 @@
-.title{
+.banner{
+    padding-top: 10px;
+    text-align: center;
+    background-color: #62DA64;
+    height: 110px;
+}
+.banner .logos{
+    height: 85px;
+    width: 100px;
+    display: inline-block;
+    margin: 0;
+}
+.bantext{
     color: black;
-    font-size: 18px;
+    font-size: 63px;
+    font-weight: 500;
+    margin: 0 20px 0 0;
+    padding: 0;
+    top: -20px;
+    position: relative;
+    display: inline-block;
+}
+.title{
+    color: white;
+    font-size: 15px;
+    text-shadow: 1px 1px 1px rgba(100, 100, 100, .2);
 }
 .artist{
     color: rgba(0, 0, 0, .7);
+    font-size: 17px;
     font-weight: 600;
 }
 .hidden{
@@ -16,8 +40,8 @@
     text-align: center;
 }
 .artwork{
-    height: 220px;
-    width: 380px;
+    height: 200px; //220px;
+    width: 290px; //380px;
     border-radius: 2px;
 }
 .player-cont{
@@ -91,6 +115,7 @@ body{
     display: inline-block;
     padding: 20px 20px 6px 20px;
     border: 1px solid rgba(70, 0, 80, .1);
+    border-width: 0 1px 1px 0;
 }
 
 .media-button-cont{
