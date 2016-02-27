@@ -49,12 +49,12 @@ player = {};
             player.songid = sobj.song_id;
             player.song = sobj;
             player.artwork = sobj.song_image || sobj.user_image || DEFAULT_ARTWORK;
-            $('.artwork').attr('src', player.artwork);
 
             SC.get("/tracks/" + player.songid).then(function (sound) {
                 player.log('playing: ' + sobj.user_name + ' - ' + sobj.song_title);
                 $('.title').text(sobj.song_title);
                 $('.artist').text(sobj.user_name);
+                $('.artwork').attr('src', player.artwork);
 
                 var url = sound.stream_url + "?client_id=27bcac07db1cde6ee2ff5f3ad8d79969";
                 player.song.url = url;
