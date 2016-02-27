@@ -6,6 +6,8 @@
     <title>Uncharted admin page</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="../js/client.js"></script>
+    <script type="text/javascript" src="http://w.soundcloud.com/player/api.js"></script>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
     <script>
         allsongs = [];
 
@@ -26,6 +28,9 @@
                     allsongs.push(song);
                 });
                 populateList();
+                randSelect = Math.floor(Math.random() * allsongs.length);
+                $('.song-list option:eq(' + randSelect + ')').prop('selected', true)
+                populateInfo();
             });
         }
 
@@ -43,6 +48,7 @@
                     $('.song-list').append($option);
                 }
             });
+            $('.counter').text($('option').length + ' / ' + allsongs.length);
         }
 
         function populateInfo() {
@@ -52,20 +58,39 @@
                 $div = $('<div>');
                 $div.text(key + ': ' + currentSong[key]);
                 $('.info-cont').append($div);
-                //$('#' + key).text(key + ': ' + currentSong[key]);
             }
+            setCurrentSong();
+        }
+
+        function setCurrentSong() {
+            SC.get("/tracks/" + allsongs[$('.song-list').val()].song_id).then(function (sound) {
+                var url = sound.stream_url + "?client_id=27bcac07db1cde6ee2ff5f3ad8d79969";
+                $("#audio-player").attr("src", url);
+                $("#audio-player").play();
+            });
         }
 
         $(function () {
+            SC.initialize({
+                client_id: '27bcac07db1cde6ee2ff5f3ad8d79969'
+            });
+
             getAllSongs();
+
             $('.song-list').on('change', populateInfo);
+
             $('#addLike').on('click', function () {
                 $.post("/likesong", {'song-id': allsongs[$('.song-list').val()].song_id});
             });
+
             $('#removeSong').on('click', function () {
                 $.post('/removesong', {'song-id': allsongs[$('.song-list').val()].song_id});
             });
+
             $('.filter-list').on('click', populateList);
+
+            $('#playsong').on('click', $('#audio-player').play);
+            $('#pausesong').on('click', $('#audio-player').pause);
         });
     </script>
 </head>
@@ -73,19 +98,20 @@
 <body>
     <select class="song-list"></select>
     <input type="text" class="list-eval" value="true">
+
     <input type="button" class="filter-list" value="Filter">
+    <span class="counter"></span>
+
     <div class="info-cont"></div>
-    <div id="id"></div>
-    <div id="song_id"></div>
-    <div id="song_title"></div>
-    <div id="user_name"></div>
-    <div id="user_id"></div>
-    <div id="user_image"></div>
-    <div id="song_image"></div>
-    <div id="song_url"></div>
-    <div id="likes"></div>
+
     <button id="removeSong">Remove Song</button>
-    <button id="addLike">Add Like</button>
+    <button id="addLike">Add Like</button><br>
+
+    <!--
+    <button id="playsong">Play</button>
+    <button id="pausesong">Pause</button> -->
+    <br>
+    <audio controls id="audio-player" src=""></audio>
 </body>
 
 </html>

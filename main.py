@@ -77,13 +77,13 @@ class UpdateSongLikes(webapp2.RequestHandler):
 class GetSong(webapp2.RequestHandler):
 
     def get(self):
-        size = 200 # todo: make dynamic query
-        random_id = random.randint(0, size-1)
+        all_songs = Song.query().fetch()
+        size = len(all_songs)
+        random_index = random.randint(0, size-1)
+        qry = all_songs[random_index]
 
         # song_query = ndb.gql("SELECT song_id FROM Song where id=%s" % song_choice).fetch(1)
         # song_query = ndb.gql("SELECT song_id FROM Song LIMIT 1").fetch(1)
-
-        qry = Song.query(Song.id == random_id).fetch(1)[0]
 
         self.response.headers['Content-Type'] = 'application/json'
         obj = { 'song_id': qry.song_id,
