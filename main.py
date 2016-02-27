@@ -97,6 +97,24 @@ class GetSong(webapp2.RequestHandler):
                 'likes': qry.likes }
         self.response.out.write(json.dumps(obj))
 
+class GetAllSongs(webapp2.RequestHandler):
+
+    def get(self):
+        qry = Song.query().fetch()
+        songdict = []
+        for song in qry:
+            obj = { 'song_id': song.song_id,
+                'id': song.id,
+                'song_title': song.song_title,
+                'user_name': song.user_name,
+                'user_id': song.user_id,
+                'user_image': song.user_image,
+                'song_image': song.song_image,
+                'song_url': song.song_url,
+                'likes': song.likes }
+            songdict.append(obj)
+        self.response.out.write(json.dumps(songdict))
+
 
 class RemoveSong(webapp2.RequestHandler):
 
@@ -112,12 +130,21 @@ class WorkAroundHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('workaround.html')
         self.response.write(template.render())
 
+
+class AdminPage(webapp2.RequestHandler):
+
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('pages/admin.html')
+        self.response.write(template.render())
+
 app = webapp2.WSGIApplication([
     ('/', About),
     ('/radio', Player),
     ('/about', About),
     ('/artist', Artist),
     ('/song', GetSong),
+    ('/allsongs', GetAllSongs),
+    ('/admin', AdminPage),
     ('/likesong', UpdateSongLikes),
     ('/savesong', SaveSong),
     ('/removesong', RemoveSong),
