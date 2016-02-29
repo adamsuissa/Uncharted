@@ -73,6 +73,7 @@ body{
     .logo{
         height: 70px;
         width: 450px;
+        margin-top: 25px;
     }
 }
 
@@ -80,12 +81,13 @@ body{
     .logo{
         height: 70px;
         width: 350px;
+        margin-top: 25px;
     }
 }
 
 @media screen and (max-width: 350px){
     .logo{
-        margin-top: 15px;
+        margin-top: 25px;
         height: 65px;
         width: 320px;
     }
@@ -128,8 +130,15 @@ body{
     }
 }
 
-@media screen and (max-width: 341px){
+@media screen and (max-width: 342px){
     a{
         display: block;
+    }
+
+}
+
+@media screen and (max-width: 250px){
+    .media-button-cont{
+        display: none;
     }
 }

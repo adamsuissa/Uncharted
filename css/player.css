@@ -59,6 +59,8 @@
 body{
     font-family: "Century Gothic", sans-serif !important;
     text-transform: uppercase;
+    /*background-image: url('../images/birdback.jpg');*/
+    background-size: cover;
 }
 .product-description{
     margin-top: 100px;
@@ -110,13 +112,23 @@ body{
 }
 
 .song-info-cont{
-    background-color: rgba(230, 150, 120, .5);
+    /*background-color: #62DA64;*/
+
+    background-color: #AFB9AE;
+            /*#AFB9AE  131C51;*/
+    /*rgba(230, 150, 120, .5);*/
     border-radius: 15px;
     display: inline-block;
     padding: 20px 20px 6px 20px;
-    border: 1px solid rgba(70, 0, 80, .1);
+    border: 5px solid rgba(70, 0, 80, .1);
     border-width: 0 1px 1px 0;
+    /*width: 66%;*/
+
+/*-webkit-box-shadow: -1px -1px 86px -24px rgba(0,0,0,0.75);*/
+/*-moz-box-shadow: -1px -1px 86px -24px rgba(0,0,0,0.75);*/
+/*box-shadow: -1px -1px 86px -24px rgba(0,0,0,0.75);*/
 }
+
 
 .media-button-cont{
     margin-top: 35px;
@@ -220,12 +232,13 @@ a:hover{
     .logo{
         height: 70px;
         width: 350px;
+        margin-top: 25px;
     }
 }
 
 @media screen and (max-width: 350px){
     .logo{
-        margin-top: 15px;
+        margin-top: 25px;
         height: 65px;
         width: 320px;
     }
@@ -238,6 +251,42 @@ a:hover{
 }
 
 @media screen and (max-width: 341px){
+    a{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 540px){
+    .logo{
+        height: 70px;
+        width: 450px;
+        margin-top: 25px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .logo{
+        height: 70px;
+        width: 350px;
+        margin-top: 25px;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .logo{
+        margin-top: 25px;
+        height: 65px;
+        width: 320px;
+    }
+}
+
+@media screen and (max-width: 250px){
+    .media-button-cont{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 342px){
     a{
         display: block;
     }
