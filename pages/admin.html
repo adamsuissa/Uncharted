@@ -14,9 +14,8 @@
         function getAllSongs() {
             $.get('/allsongs', function (data) {
                 data = JSON.parse(data);
-                data.forEach(function (val, ind) {
-                    var song = {};
-                    song.song_id = val.song_id;
+                data.forEach(function (val) {
+                    {#song.song_id = val.song_id;
                     song.id = val.id;
                     song.song_title = val.song_title;
                     song.user_name = val.user_name;
@@ -25,8 +24,20 @@
                     song.song_image = val.song_image;
                     song.song_url = val.song_url;
                     song.likes = val.likes;
+                    console.log('comment???');#}
+                    var song = {};
+                    for (key in val) {
+                        song[key] = val[key];
+                    }
                     allsongs.push(song);
                 });
+
+                allsongs.sort(function (a, b) {
+                    if (a.user_name.toLowerCase() > b.user_name.toLowerCase())
+                        return 1;
+                    return -1;
+                });
+
                 populateList();
                 randomSong();
                 populateInfo();
@@ -39,30 +50,55 @@
         }
 
         function songFilter(song) {
-            return eval($('.list-eval').val());
+            foundText = false;
+            lookingFor = $('.list-search').val().toLowerCase();
+
+            if (lookingFor.length) {
+                for (key in song) {
+                    if (song.hasOwnProperty(key) && typeof song[key] === 'string') {
+                        if (song[key].toLowerCase().indexOf(lookingFor) > -1) {
+                            foundText = true;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                foundText = true;
+            }
+            return eval($('.list-eval').val()) && foundText;
         }
 
         function populateList() {
-            $('.song-list').empty();
+            $songlist = $('.song-list');
+            $songlist.empty();
+
             allsongs.forEach(function (val, ind) {
                 if (songFilter(val)) {
                     $option = $('<option>');
                     $option.attr('value', ind);
                     $option.text(val.user_name + ' - ' + val.song_title);
-                    $('.song-list').append($option);
+                    $songlist.append($option);
                 }
             });
+
             $('.counter').text($('option').length + ' / ' + allsongs.length);
         }
 
         function populateInfo() {
             currentSong = allsongs[$('.song-list').val()];
-            $('.info-cont').empty();
-            for (key in currentSong) {
+            $infocont = $('.info-cont');
+            $infocont.empty();
+
+            keys = Object.keys(currentSong);
+            keys.sort();
+
+            for (var ctr=0; ctr<keys.length; ctr++) {
                 $div = $('<div>');
-                $div.text(key + ': ' + currentSong[key]);
-                $('.info-cont').append($div);
+                k = keys[ctr];
+                $div.text(k + ': ' + currentSong[k]);
+                $infocont.append($div);
             }
+
             setCurrentSong();
         }
 
@@ -70,7 +106,6 @@
             SC.get("/tracks/" + allsongs[$('.song-list').val()].song_id).then(function (sound) {
                 var url = sound.stream_url + "?client_id=27bcac07db1cde6ee2ff5f3ad8d79969";
                 $("#audio-player").attr("src", url);
-                $("#audio-player").play();
             });
         }
 
@@ -91,7 +126,11 @@
                 $.post('/removesong', {'song-id': allsongs[$('.song-list').val()].song_id});
             });
 
-            $('.filter-list').on('click', populateList);
+            $('.filter-list').on('click', function () {
+                populateList();
+                randomSong();
+                populateInfo();
+            });
 
             $('#playsong').on('click', $('#audio-player').play);
             $('#pausesong').on('click', $('#audio-player').pause);
@@ -100,8 +139,10 @@
 </head>
 
 <body>
-    <select class="song-list"></select>
-    <input type="text" class="list-eval" value="true">
+    <select class="song-list"></select><br>
+
+    Eval filter: <input type="text" class="list-eval" value="true"><br>
+    Text search: <input type="text" class="list-search" value=""><br>
 
     <input type="button" class="filter-list" value="Filter">
     <span class="counter"></span>
