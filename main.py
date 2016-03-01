@@ -138,9 +138,20 @@ class WorkAroundHandler(webapp2.RequestHandler):
 
 class AdminPage(webapp2.RequestHandler):
 
+    def post(self):
+        password = self.request.get('password')
+
+        if password == 'dothechanchan':
+            self.response.out.write('true')
+        else:
+            self.response.out.write(json.dumps('false'))
+
+
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('pages/admin.html')
         self.response.write(template.render())
+
+
 
 app = webapp2.WSGIApplication([
     ('/', About),

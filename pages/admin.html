@@ -9,6 +9,36 @@
     <script type="text/javascript" src="http://w.soundcloud.com/player/api.js"></script>
     <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
     <script>
+
+
+
+        login = {};
+        login.admin = function adminLogin(){
+            var password = $('.login').val();
+
+            $.ajax({
+                url: '/admin',
+                type: 'post',
+                data: {"password": password},
+                datatype: 'json',
+                success: function(data){
+                    if (data == 'true'){
+                         $('.main').css('display', 'block');
+                        $('.initlogin').remove();
+                    }
+                    else{
+                       var error =  $('<p></p>', {'text': 'Wrong password'});
+                        $("body").append(error);
+                        setTimeout(function(){
+                            error.remove()
+                        }, 1000);
+                    }
+                }
+            })
+        };
+
+
+
         allsongs = [];
 
         function getAllSongs() {
@@ -139,6 +169,13 @@
 </head>
 
 <body>
+
+<div class="initlogin">
+    <input class="login" type="text" placeholder="type the admin password">
+    <input class="submit" type="submit" value="submit" onclick="login.admin()">
+</div>
+<div class="main" style="display: none">
+
     <select class="song-list"></select><br>
 
     Eval filter: <input type="text" class="list-eval" value="true"><br>
@@ -157,6 +194,7 @@
     <button id="pausesong">Pause</button> -->
     <br>
     <audio controls id="audio-player" src=""></audio>
+</div>
 </body>
 
 </html>
