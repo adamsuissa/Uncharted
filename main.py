@@ -16,22 +16,30 @@ class Song(ndb.Model):
 
     id = ndb.IntegerProperty()
     song_title = ndb.StringProperty()
-    song_id = ndb.IntegerProperty()
+    song_id = ndb.StringProperty()
     user_name = ndb.StringProperty()
-    user_id = ndb.IntegerProperty()
+    user_id = ndb.StringProperty()
     user_image = ndb.StringProperty()
     song_image = ndb.StringProperty()
     song_url = ndb.StringProperty()
     likes = ndb.IntegerProperty()
+    duration = ndb.StringProperty()
+    sharing = ndb.StringProperty()
+    genre = ndb.StringProperty()
+    bpm = ndb.StringProperty()
+    waveform_url = ndb.StringProperty()
+    playback_count = ndb.StringProperty()
+
 
 
 class SaveSong(webapp2.RequestHandler):
 
     def post(self):
         song_id = self.request.get('song-id')
-        qry = Song.query(Song.song_id == int(song_id)).fetch()
+        qry = Song.query(Song.song_id == song_id).fetch()
 
-        if qry.length == 0:
+        if len(qry) == 0:
+            id = self.request.get('id')
             song_title = self.request.get('song-title')
             song_id = self.request.get('song-id')
             user_name = self.request.get('user-name')
@@ -39,11 +47,17 @@ class SaveSong(webapp2.RequestHandler):
             user_image = self.request.get('user-image')
             song_image = self.request.get('song-image')
             song_url = self.request.get('song-url')
-            id = self.request.get('id')
+            sharing = self.request.get('sharing')
+            genre = self.request.get('genre')
+            bpm = self.request.get('bpm')
+            waveform_url = self.request.get('waveform-url')
+            playback_count = self.request.get('playback-count')
+            duration = self.request.get('duration')
 
             new_song = Song()
-            new_song.populate(id=int(id), song_title=song_title, song_id=int(song_id), user_name=user_name, user_id=int(user_id),
-                              user_image=user_image, song_image=song_image, song_url=song_url, likes=0)
+            new_song.populate(id=int(id), song_title=song_title, song_id=song_id, user_name=user_name, user_id=user_id,
+                              user_image=user_image, song_image=song_image, song_url=song_url, likes=0, sharing = sharing, genre = genre, bpm = bpm,
+                              waveform_url = waveform_url, playback_count = playback_count, duration = duration)
             new_song.put()
 
 

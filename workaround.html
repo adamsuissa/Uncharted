@@ -34,6 +34,13 @@
             newTrack['user-image'] = val.user.avatar_url;
             newTrack['song-image'] = val.artwork_url;
             newTrack['song-url'] = val.permalink_url;
+            newTrack['sharing'] = val.sharing;
+            newTrack['genre'] = val.genre;
+            newTrack['bpm'] = val.bpm;
+            newTrack['waveform-url'] = val.waveform_url;
+            newTrack['playback-count'] = val.playback_count;
+            newTrack['duration'] = val.duration;
+
             $.post('/savesong', newTrack, function (data) {
                 console.log(data);
             });
